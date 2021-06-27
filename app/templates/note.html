@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Note Page{% endblock %}
+
+{% block body %}
+
+<h1>Note</h1>
+<h3>{{ user.first_name }}</h3>
+
+<br>
+<!--    {% if user.notes == 0 %}-->
+<!--    <p>You don't have any note written yet</p>-->
+<!--    {% else %}-->
+<ul class="list-group list-group-flash">
+    {% for note in user.notes %}
+    <li class="list-group-item">
+        {{ note.note }}
+        <button class="close" type="button" onClick="deleteNote({{ note.id }})">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </li>
+    {% endfor %}
+</ul>
+<!--    {% endif %}-->
+
+
+<form method="post">
+    <textarea class="form-control" rows="3" id="note" name='note'></textarea>
+    <br>
+    <!--        -->
+    <button class="btn btn-primary">Add Note</button>
+</form>
+
+
+{% endblock %}
